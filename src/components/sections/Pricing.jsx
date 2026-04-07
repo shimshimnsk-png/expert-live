@@ -18,10 +18,12 @@ function PricingCard({ plan, index }) {
       } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      {/* Popular badge */}
+      {/* Badge */}
       {plan.badge && (
         <div className="absolute top-0 left-0 right-0 flex justify-center">
-          <span className="bg-primary text-white text-xs font-semibold px-4 py-1 rounded-b-lg">
+          <span className={`text-white text-xs font-semibold px-4 py-1 rounded-b-lg ${
+            plan.earlyBird && !plan.highlight ? 'bg-gold' : 'bg-primary'
+          }`}>
             {plan.badge}
           </span>
         </div>
@@ -39,8 +41,10 @@ function PricingCard({ plan, index }) {
 
         {/* Price */}
         <div className="flex items-end gap-2 mb-8">
-          <span className="font-display font-bold text-4xl text-text">{plan.price} ₽</span>
-          <span className="text-text-muted mb-1">/ {plan.period}</span>
+          <span className="font-display font-bold text-4xl text-text">
+            {plan.price}{plan.period ? ' ₽' : ''}
+          </span>
+          {plan.period && <span className="text-text-muted mb-1">/ {plan.period}</span>}
         </div>
 
         {/* Features */}
