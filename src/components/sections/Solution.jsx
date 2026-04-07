@@ -83,7 +83,7 @@ export function Solution() {
             «Ты — эксперт. Твоя задача — давать ценность.{' '}
             <span className="text-gradient">Наша задача — чтобы за это платили.»</span>
           </blockquote>
-          <Button variant="primary" size="lg" href="#cta">
+          <Button variant="primary" size="lg" href="https://tally.so/r/GxDZxQ" target="_blank">
             Попробовать бесплатно
             <ArrowRight size={18} />
           </Button>

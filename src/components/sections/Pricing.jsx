@@ -64,7 +64,8 @@ function PricingCard({ plan, index }) {
         <Button
           variant={plan.highlight ? 'primary' : 'secondary'}
           size="md"
-          href="#cta"
+          href="https://tally.so/r/GxDZxQ"
+          target="_blank"
           className="w-full"
         >
           {plan.cta}

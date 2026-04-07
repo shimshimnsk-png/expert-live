@@ -37,7 +37,7 @@ export function FinalCTA() {
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-            <Button variant="primary" size="lg" href="#pricing">
+            <Button variant="primary" size="lg" href="https://tally.so/r/GxDZxQ" target="_blank">
               Начать 14 дней бесплатно
               <ArrowRight size={18} />
             </Button>

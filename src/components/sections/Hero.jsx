@@ -45,7 +45,7 @@ export function Hero() {
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <Button variant="primary" size="lg" href="#cta">
+            <Button variant="primary" size="lg" href="https://tally.so/r/GxDZxQ" target="_blank">
               Начать бесплатно
               <ArrowRight size={18} />
             </Button>

@@ -4,7 +4,7 @@ import React from 'react'
  * variant: 'primary' | 'secondary' | 'ghost'
  * size: 'sm' | 'md' | 'lg'
  */
-export function Button({ children, variant = 'primary', size = 'md', className = '', onClick, href }) {
+export function Button({ children, variant = 'primary', size = 'md', className = '', onClick, href, target }) {
   const base = 'inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-300 cursor-pointer select-none'
 
   const variants = {
@@ -24,7 +24,7 @@ export function Button({ children, variant = 'primary', size = 'md', className =
 
   if (href) {
     return (
-      <a href={href} className={cls}>
+      <a href={href} target={target} className={cls}>
         {children}
       </a>
     )
