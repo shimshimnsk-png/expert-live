@@ -1,6 +1,7 @@
 import React from 'react'
 import { Quote, Star, CheckCircle2 } from 'lucide-react'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
+import { Badge } from '../ui/Badge'
 
 const achievements = [
   '8 лет в онлайн-образовании',
@@ -59,7 +60,7 @@ export function Creator() {
               </div>
 
               {/* Floating review card */}
-              <div className="absolute -right-4 sm:-right-8 top-8 bg-bg-elevated border border-border rounded-xl p-3 shadow-lg w-48">
+              <div className="hidden sm:block absolute sm:-right-8 top-8 bg-bg-elevated border border-border rounded-xl p-3 shadow-lg w-48">
                 <div className="flex gap-0.5 mb-1">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={10} className="fill-gold text-gold" />
@@ -70,7 +71,7 @@ export function Creator() {
               </div>
 
               {/* Stats card */}
-              <div className="absolute -left-4 sm:-left-8 bottom-16 bg-bg-elevated border border-primary/20 rounded-xl p-3 shadow-lg">
+              <div className="hidden sm:block absolute sm:-left-8 bottom-16 bg-bg-elevated border border-primary/20 rounded-xl p-3 shadow-lg">
                 <p className="text-text-faint text-xs mb-1">Запусков проведено</p>
                 <p className="text-text font-display font-bold text-2xl">200+</p>
               </div>
@@ -79,9 +80,9 @@ export function Creator() {
 
           {/* Text side */}
           <div className="order-1 lg:order-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium tracking-widest uppercase text-gold bg-gold/10 border border-gold/20 mb-6">
-              Создатель платформы
-            </span>
+            <div className="mb-6">
+              <Badge variant="goldSolid" size="section">Создатель платформы</Badge>
+            </div>
 
             <h2 className="font-display text-3xl md:text-4xl font-bold text-text mb-2">
               Лиханова Олеся

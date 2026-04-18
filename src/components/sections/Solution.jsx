@@ -3,6 +3,7 @@ import { CheckCircle2, ArrowRight } from 'lucide-react'
 import { SectionTitle } from '../ui/SectionTitle'
 import { Button } from '../ui/Button'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
+import { useLeadModal } from '../../context/LeadModalContext'
 
 const before = [
   'Ищешь продюсера месяцами',
@@ -22,6 +23,7 @@ const after = [
 
 export function Solution() {
   const { ref, isVisible } = useScrollAnimation(0.1)
+  const { openLeadModal } = useLeadModal()
 
   return (
     <section className="section-padding relative overflow-hidden">
@@ -83,7 +85,7 @@ export function Solution() {
             «Ты — эксперт. Твоя задача — давать ценность.{' '}
             <span className="text-gradient">Наша задача — чтобы за это платили.»</span>
           </blockquote>
-          <Button variant="primary" size="lg" href="https://tally.so/r/GxDZxQ" target="_blank">
+          <Button variant="primary" size="lg" onClick={() => openLeadModal('Solution')}>
             Попробовать бесплатно
             <ArrowRight size={18} />
           </Button>

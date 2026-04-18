@@ -12,6 +12,7 @@ import { ForWhom } from './components/sections/ForWhom'
 import { Pricing } from './components/sections/Pricing'
 import { FAQ } from './components/sections/FAQ'
 import { FinalCTA } from './components/sections/FinalCTA'
+import { LeadModal } from './components/modal/LeadModal'
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
         <FinalCTA />
       </main>
       <Footer />
+      <LeadModal />
     </div>
   )
 }

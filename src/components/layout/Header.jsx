@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from '../ui/Button'
 import { Menu, X, Zap } from 'lucide-react'
+import { useLeadModal } from '../../context/LeadModalContext'
 
 const navLinks = [
   { label: 'Возможности', href: '#features' },
@@ -12,12 +13,20 @@ const navLinks = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const { openLeadModal } = useLeadModal()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
 
   return (
     <header
@@ -57,7 +66,7 @@ export function Header() {
             <Button variant="secondary" size="sm" href="#pricing">
               Тарифы
             </Button>
-            <Button variant="primary" size="sm" href="#cta">
+            <Button variant="primary" size="sm" onClick={() => openLeadModal('Header')}>
               Попробовать бесплатно
             </Button>
           </div>
@@ -87,7 +96,15 @@ export function Header() {
                 {link.label}
               </a>
             ))}
-            <Button variant="primary" size="md" href="#cta" className="w-full mt-2">
+            <Button
+              variant="primary"
+              size="md"
+              className="w-full mt-2"
+              onClick={() => {
+                setMenuOpen(false)
+                openLeadModal('Header-Mobile')
+              }}
+            >
               Попробовать бесплатно
             </Button>
           </div>

@@ -3,17 +3,19 @@ import { SectionTitle } from '../ui/SectionTitle'
 import { Button } from '../ui/Button'
 import { plans } from '../../data/pricing'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
+import { useLeadModal } from '../../context/LeadModalContext'
 import { CheckCircle2 } from 'lucide-react'
 
 function PricingCard({ plan, index }) {
   const { ref, isVisible } = useScrollAnimation(0.1)
+  const { openLeadModal } = useLeadModal()
 
   return (
     <div
       ref={ref}
       className={`relative flex flex-col rounded-2xl overflow-hidden transition-all duration-600 ${
         plan.highlight
-          ? 'bg-bg-elevated border-2 border-primary shadow-2xl shadow-primary/20 scale-[1.02]'
+          ? 'bg-bg-elevated border-2 border-primary shadow-2xl shadow-primary/20 md:scale-[1.02]'
           : 'bg-bg-card border border-border'
       } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       style={{ transitionDelay: `${index * 100}ms` }}
@@ -21,8 +23,12 @@ function PricingCard({ plan, index }) {
       {/* Badge */}
       {plan.badge && (
         <div className="absolute top-0 left-0 right-0 flex justify-center">
-          <span className={`text-white text-xs font-semibold px-4 py-1 rounded-b-lg ${
-            plan.earlyBird && !plan.highlight ? 'bg-gold' : 'bg-primary'
+          <span className={`text-xs font-semibold px-4 py-1 rounded-b-lg ${
+            plan.highlight
+              ? 'bg-gold text-bg'
+              : plan.earlyBird
+              ? 'bg-gold text-bg'
+              : 'bg-primary text-white'
           }`}>
             {plan.badge}
           </span>
@@ -34,7 +40,7 @@ function PricingCard({ plan, index }) {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
       )}
 
-      <div className="p-7 flex-1 flex flex-col" style={{ paddingTop: plan.badge ? '2rem' : undefined }}>
+      <div className={`p-7 flex-1 flex flex-col ${plan.badge ? 'pt-8' : ''}`}>
         {/* Plan name */}
         <h3 className="font-display font-bold text-text text-xl mb-1">{plan.name}</h3>
         <p className="text-text-muted text-sm mb-6">{plan.description}</p>
@@ -64,8 +70,7 @@ function PricingCard({ plan, index }) {
         <Button
           variant={plan.highlight ? 'primary' : 'secondary'}
           size="md"
-          href="https://tally.so/r/GxDZxQ"
-          target="_blank"
+          onClick={() => openLeadModal(`Pricing — ${plan.name}`)}
           className="w-full"
         >
           {plan.cta}

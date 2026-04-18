@@ -2,8 +2,10 @@ import React from 'react'
 import { ArrowRight, Play, Star } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { Badge } from '../ui/Badge'
+import { useLeadModal } from '../../context/LeadModalContext'
 
 export function Hero() {
+  const { openLeadModal } = useLeadModal()
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background glow */}
@@ -45,7 +47,7 @@ export function Hero() {
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <Button variant="primary" size="lg" href="https://tally.so/r/GxDZxQ" target="_blank">
+            <Button variant="primary" size="lg" onClick={() => openLeadModal('Hero')}>
               Начать бесплатно
               <ArrowRight size={18} />
             </Button>
@@ -61,17 +63,17 @@ export function Hero() {
             <div className="flex items-center gap-3">
               <div className="flex -space-x-2">
                 {[
-                  'bg-violet-500',
-                  'bg-pink-500',
-                  'bg-amber-500',
-                  'bg-emerald-500',
-                  'bg-sky-500',
-                ].map((color, i) => (
+                  { color: 'bg-violet-500', letter: 'А' },
+                  { color: 'bg-pink-500', letter: 'М' },
+                  { color: 'bg-amber-500', letter: 'О' },
+                  { color: 'bg-emerald-500', letter: 'Е' },
+                  { color: 'bg-sky-500', letter: 'Н' },
+                ].map(({ color, letter }, i) => (
                   <div
                     key={i}
                     className={`w-8 h-8 rounded-full ${color} border-2 border-bg flex items-center justify-center text-white text-xs font-bold`}
                   >
-                    {['А', 'М', 'О', 'Е', 'Н'][i]}
+                    {letter}
                   </div>
                 ))}
               </div>
@@ -134,7 +136,7 @@ export function Hero() {
 
               {/* Main content */}
               <div className="md:col-span-2 space-y-4">
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {[
                     { label: 'Регистраций', value: '847', trend: '+23%' },
                     { label: 'Пришло', value: '412', trend: '+18%' },

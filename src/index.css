@@ -43,6 +43,15 @@
     background-clip: text;
   }
 
+  @media (forced-colors: active) {
+    .text-gradient,
+    .text-gradient-soft {
+      background: none;
+      -webkit-text-fill-color: currentColor;
+      color: CanvasText;
+    }
+  }
+
   .border-gradient {
     border: 1px solid transparent;
     background-clip: padding-box;

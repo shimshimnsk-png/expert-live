@@ -24,7 +24,13 @@ export function Button({ children, variant = 'primary', size = 'md', className =
 
   if (href) {
     return (
-      <a href={href} target={target} className={cls}>
+      <a
+        href={href}
+        target={target}
+        rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+        onClick={onClick}
+        className={cls}
+      >
         {children}
       </a>
     )

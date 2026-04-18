@@ -2,9 +2,11 @@ import React from 'react'
 import { ArrowRight, Zap } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
+import { useLeadModal } from '../../context/LeadModalContext'
 
 export function FinalCTA() {
   const { ref, isVisible } = useScrollAnimation(0.1)
+  const { openLeadModal } = useLeadModal()
 
   return (
     <section id="cta" className="section-padding relative overflow-hidden">
@@ -37,7 +39,7 @@ export function FinalCTA() {
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-            <Button variant="primary" size="lg" href="https://tally.so/r/GxDZxQ" target="_blank">
+            <Button variant="primary" size="lg" onClick={() => openLeadModal('FinalCTA')}>
               Начать 14 дней бесплатно
               <ArrowRight size={18} />
             </Button>

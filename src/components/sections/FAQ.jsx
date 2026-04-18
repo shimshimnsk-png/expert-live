@@ -20,18 +20,26 @@ function FAQItem({ question, answer, index }) {
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between gap-4 p-6 text-left"
         aria-expanded={open}
+        aria-controls={`faq-panel-${index}`}
       >
         <span className="font-display font-semibold text-text pr-4">{question}</span>
         <ChevronDown
           size={20}
           className={`text-text-muted flex-shrink-0 transition-transform duration-300 ${open ? 'rotate-180 text-primary-light' : ''}`}
+          aria-hidden="true"
         />
       </button>
 
       <div
-        className={`overflow-hidden transition-all duration-300 ${open ? 'max-h-96' : 'max-h-0'}`}
+        id={`faq-panel-${index}`}
+        role="region"
+        className={`grid transition-all duration-300 ${
+          open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+        }`}
       >
-        <p className="text-text-muted leading-relaxed px-6 pb-6">{answer}</p>
+        <div className="overflow-hidden">
+          <p className="text-text-muted leading-relaxed px-6 pb-6">{answer}</p>
+        </div>
       </div>
     </div>
   )
