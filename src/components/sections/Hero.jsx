@@ -41,7 +41,7 @@ export function Hero() {
 
           {/* Subheadline */}
           <p className="text-text-muted text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-            LaunchFlow — платформа, которая ведёт тебя от идеи до продажи.
+            «Самостоятельные запуски» — платформа, которая ведёт тебя от идеи до продажи.
             Структура, прогрев, презентация, дожим — всё готово. Ты просто эксперт.
           </p>
 
@@ -104,7 +104,7 @@ export function Hero() {
               <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
               <div className="w-3 h-3 rounded-full bg-green-500/60" />
               <div className="ml-4 flex-1 bg-bg-surface rounded-md px-3 py-1 text-xs text-text-faint">
-                app.launchflow.ru/dashboard
+                app.samozapuski.ru/dashboard
               </div>
             </div>
 

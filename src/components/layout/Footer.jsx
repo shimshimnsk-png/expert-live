@@ -14,13 +14,14 @@ export function Footer() {
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
             className="flex items-center gap-2"
-            aria-label="LaunchFlow — наверх"
+            aria-label="Самостоятельные запуски — наверх"
           >
             <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
               <Zap size={14} className="text-white" />
             </div>
-            <span className="font-display font-bold text-text">
-              Launch<span className="text-primary-light">Flow</span>
+            <span className="font-display font-bold text-sm sm:text-base text-text">
+              Самостоятельные{' '}
+              <span className="text-primary-light">запуски</span>
             </span>
           </a>
 
@@ -33,7 +34,7 @@ export function Footer() {
           </nav>
 
           <p className="text-xs text-text-faint">
-            © 2026 LaunchFlow. Все права защищены.
+            © 2026 Самостоятельные запуски. Все права защищены.
           </p>
         </div>
       </div>

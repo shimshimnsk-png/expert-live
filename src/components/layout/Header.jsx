@@ -46,13 +46,14 @@ export function Header() {
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
             className="flex items-center gap-2 group"
-            aria-label="LaunchFlow — наверх"
+            aria-label="Самостоятельные запуски — наверх"
           >
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center group-hover:bg-primary-light transition-colors">
               <Zap size={16} className="text-white" />
             </div>
-            <span className="font-display font-bold text-lg text-text">
-              Launch<span className="text-primary-light">Flow</span>
+            <span className="font-display font-bold text-sm sm:text-base text-text leading-tight">
+              Самостоятельные{' '}
+              <span className="text-primary-light">запуски</span>
             </span>
           </a>
 

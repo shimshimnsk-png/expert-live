@@ -39,7 +39,7 @@ export function Solution() {
             badge="Решение"
             title={
               <>
-                LaunchFlow — это твой{' '}
+                «Самостоятельные запуски» — это твой{' '}
                 <span className="text-gradient">продающий отдел</span>
                 <br />в одном приложении
               </>

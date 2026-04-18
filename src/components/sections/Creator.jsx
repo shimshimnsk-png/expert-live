@@ -55,7 +55,7 @@ export function Creator() {
                 {/* Name tag at bottom */}
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <p className="text-white font-display font-bold text-xl">Лиханова Олеся</p>
-                  <p className="text-gold-light text-sm">Основатель LaunchFlow</p>
+                  <p className="text-gold-light text-sm">Основатель платформы</p>
                 </div>
               </div>
 

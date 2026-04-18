@@ -1,4 +1,4 @@
-// Серверная функция Netlify: принимает заявку с лендинга LaunchFlow и пересылает её в Telegram.
+// Серверная функция Netlify: принимает заявку с лендинга «Самостоятельные запуски» и пересылает её в Telegram.
 // Токен бота и chat_id читаются из переменных окружения Netlify — в код они НЕ попадают.
 
 export async function handler(event) {
@@ -30,7 +30,7 @@ export async function handler(event) {
     (typeof v === "string" ? v : "").slice(0, max).replace(/[<>]/g, "");
 
   const text =
-    `🚀 Новая заявка с LaunchFlow\n\n` +
+    `🚀 Новая заявка — Самостоятельные запуски\n\n` +
     `👤 Имя: ${clean(name, 100) || "—"}\n` +
     `🎯 Ниша: ${clean(niche, 100) || "—"}\n` +
     `📊 Ситуация: ${clean(situation, 200) || "—"}\n` +
