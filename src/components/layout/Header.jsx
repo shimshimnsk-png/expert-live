@@ -39,7 +39,15 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
+          <a
+            href="#top"
+            onClick={(e) => {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+            className="flex items-center gap-2 group"
+            aria-label="LaunchFlow — наверх"
+          >
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center group-hover:bg-primary-light transition-colors">
               <Zap size={16} className="text-white" />
             </div>

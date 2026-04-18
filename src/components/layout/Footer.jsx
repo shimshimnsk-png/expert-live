@@ -7,7 +7,15 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
+          <a
+            href="#top"
+            onClick={(e) => {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+            className="flex items-center gap-2"
+            aria-label="LaunchFlow — наверх"
+          >
             <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
               <Zap size={14} className="text-white" />
             </div>
