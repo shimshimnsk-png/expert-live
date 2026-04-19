@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>LaunchFlow — Запуск без продюсера</title>
+
+  <!-- Telegram Mini App SDK — обязательное подключение -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Экран 0: Приветствие -->
+  <div class="screen active" id="screen-welcome">
+    <div class="screen-inner">
+      <div class="welcome-logo">
+        <div class="logo-icon">🚀</div>
+        <div class="logo-text">Launch<span class="accent">Flow</span></div>
+      </div>
+
+      <div class="welcome-content">
+        <h1 class="welcome-title">Запускай продающие эфиры<br>без продюсера</h1>
+        <p class="welcome-subtitle">Готовые структуры, шаблоны и автоматизация — всё в одном месте. Первый эфир за 2 дня.</p>
+
+        <div class="stats-row">
+          <div class="stat">
+            <span class="stat-num">500+</span>
+            <span class="stat-label">экспертов</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">14</span>
+            <span class="stat-label">дней бесплатно</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">2 дня</span>
+            <span class="stat-label">до первого эфира</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen-footer">
+        <button class="btn-primary" id="btn-start">
+          Попробовать бесплатно
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <p class="footer-note">Карта не нужна · Без обязательств</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Экран 1: Ниша -->
+  <div class="screen" id="screen-niche">
+    <div class="screen-inner">
+      <div class="screen-header">
+        <button class="btn-back" id="back-niche" aria-label="Назад">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 33%"></div>
+        </div>
+        <span class="step-label">1 из 3</span>
+      </div>
+
+      <div class="screen-content">
+        <h2 class="screen-title">Кто ты по нише?</h2>
+        <p class="screen-subtitle">Подберём шаблоны под твою аудиторию</p>
+
+        <div class="options-grid" id="niche-options">
+          <button class="option-btn" data-value="Психолог">🧠 Психолог</button>
+          <button class="option-btn" data-value="Коуч">🎯 Коуч</button>
+          <button class="option-btn" data-value="Наставник">💡 Наставник</button>
+          <button class="option-btn" data-value="Энергопрактик">✨ Энергопрактик</button>
+          <button class="option-btn" data-value="Преподаватель">📚 Преподаватель</button>
+          <button class="option-btn" data-value="Другая ниша">🙌 Другая ниша</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Экран 2: Ситуация -->
+  <div class="screen" id="screen-situation">
+    <div class="screen-inner">
+      <div class="screen-header">
+        <button class="btn-back" id="back-situation" aria-label="Назад">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 66%"></div>
+        </div>
+        <span class="step-label">2 из 3</span>
+      </div>
+
+      <div class="screen-content">
+        <h2 class="screen-title">Где ты сейчас?</h2>
+        <p class="screen-subtitle">Поймём с какого этапа стартовать</p>
+
+        <div class="options-list" id="situation-options">
+          <button class="option-item" data-value="Только начинаю, ещё не проводил(а) эфиры">
+            <span class="option-icon">🌱</span>
+            <span class="option-text">Только начинаю, ещё не проводил(а) эфиры</span>
+            <svg class="option-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button class="option-item" data-value="Провожу эфиры, но без системы">
+            <span class="option-icon">🔄</span>
+            <span class="option-text">Провожу эфиры, но без системы</span>
+            <svg class="option-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button class="option-item" data-value="Работаю с командой, хочу уйти от зависимости">
+            <span class="option-icon">👥</span>
+            <span class="option-text">Работаю с командой, хочу уйти от зависимости</span>
+            <svg class="option-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button class="option-item" data-value="Запускаю регулярно, хочу больше конверсии">
+            <span class="option-icon">📈</span>
+            <span class="option-text">Запускаю регулярно, хочу больше конверсии</span>
+            <svg class="option-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Экран 3: Контакт -->
+  <div class="screen" id="screen-contact">
+    <div class="screen-inner">
+      <div class="screen-header">
+        <button class="btn-back" id="back-contact" aria-label="Назад">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 100%"></div>
+        </div>
+        <span class="step-label">3 из 3</span>
+      </div>
+
+      <div class="screen-content">
+        <h2 class="screen-title">Как с тобой связаться?</h2>
+        <p class="screen-subtitle">Напишу в течение часа и отправлю доступ к платформе</p>
+
+        <div class="form">
+          <div class="form-group">
+            <label class="form-label">Имя</label>
+            <input
+              class="form-input"
+              type="text"
+              id="input-name"
+              placeholder="Как к тебе обращаться"
+              autocomplete="given-name"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Telegram или телефон <span class="required">*</span></label>
+            <input
+              class="form-input"
+              type="text"
+              id="input-contact"
+              placeholder="@username или +7..."
+              autocomplete="off"
+            />
+            <p class="form-error" id="contact-error"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen-footer">
+        <button class="btn-primary" id="btn-submit">
+          <span id="submit-text">Отправить заявку</span>
+          <svg id="submit-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          <svg id="submit-spinner" class="spinner hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </button>
+        <p class="footer-note">Нажимая кнопку, ты соглашаешься с обработкой персональных данных</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Экран 4: Успех -->
+  <div class="screen" id="screen-success">
+    <div class="screen-inner success-inner">
+      <div class="success-icon">✅</div>
+      <h2 class="success-title">Заявка принята!</h2>
+      <p class="success-text">Напишу тебе в течение часа. Можешь сразу написать в Telegram — ускорит процесс.</p>
+
+      <div class="success-actions">
+        <a class="btn-primary" href="https://t.me/webinar_launchflow_bot" target="_blank" rel="noopener noreferrer">
+          Написать в Telegram
+        </a>
+        <button class="btn-secondary" id="btn-close">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

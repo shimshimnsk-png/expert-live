@@ -1,0 +1,514 @@
+/* ============================================
+   LaunchFlow Telegram Mini App — стили
+   Использует CSS-переменные Telegram SDK для
+   автоматической поддержки светлой/тёмной темы
+   ============================================ */
+
+/* Сброс и базовые настройки */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Telegram SDK автоматически устанавливает эти переменные.
+   Значения ниже — фолбэк для просмотра вне Telegram. */
+:root {
+  --tg-theme-bg-color: #ffffff;
+  --tg-theme-text-color: #000000;
+  --tg-theme-hint-color: #707579;
+  --tg-theme-link-color: #2aabee;
+  --tg-theme-button-color: #2aabee;
+  --tg-theme-button-text-color: #ffffff;
+  --tg-theme-secondary-bg-color: #f1f1f1;
+
+  /* Наши кастомные токены поверх Telegram-темы */
+  --accent: #2aabee;
+  --accent-dark: #1a9ad6;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --transition: 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden; /* скролл управляется внутри .screen-inner */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--tg-theme-text-color);
+  background-color: var(--tg-theme-bg-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   Система экранов + анимации переходов
+   ============================================ */
+
+.screen {
+  position: fixed;
+  inset: 0;
+  background-color: var(--tg-theme-bg-color);
+
+  /* Скрыт: сдвинут вправо */
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--transition), opacity var(--transition);
+  will-change: transform, opacity;
+}
+
+/* Активный экран — по центру */
+.screen.active {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Уходящий экран — сдвигается влево */
+.screen.exit-left {
+  transform: translateX(-30%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.screen-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px env(safe-area-inset-bottom, 16px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================
+   Экран: Приветствие
+   ============================================ */
+
+.welcome-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0 24px;
+}
+
+.logo-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--tg-theme-text-color);
+  letter-spacing: -0.3px;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.welcome-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  padding: 8px 0 24px;
+}
+
+.welcome-title {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+  color: var(--tg-theme-text-color);
+}
+
+.welcome-subtitle {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--tg-theme-hint-color);
+}
+
+/* Строка со статистикой */
+.stats-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--tg-theme-secondary-bg-color);
+  border-radius: var(--radius);
+  padding: 14px 12px;
+  margin-top: 8px;
+}
+
+.stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.stat-num {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--tg-theme-hint-color);
+  text-align: center;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--tg-theme-hint-color);
+  opacity: 0.2;
+}
+
+/* ============================================
+   Шапка экранов (прогресс + кнопка назад)
+   ============================================ */
+
+.screen-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 24px;
+  padding-top: 4px;
+}
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--tg-theme-secondary-bg-color);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--tg-theme-text-color);
+  flex-shrink: 0;
+  transition: opacity var(--transition), transform 120ms ease;
+}
+
+.btn-back:active {
+  opacity: 0.6;
+  transform: scale(0.93);
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--tg-theme-secondary-bg-color);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  transition: width 350ms ease;
+}
+
+.step-label {
+  font-size: 12px;
+  color: var(--tg-theme-hint-color);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   Контент экранов
+   ============================================ */
+
+.screen-content {
+  flex: 1;
+}
+
+.screen-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: var(--tg-theme-text-color);
+  margin-bottom: 6px;
+}
+
+.screen-subtitle {
+  font-size: 14px;
+  color: var(--tg-theme-hint-color);
+  margin-bottom: 20px;
+}
+
+/* Сетка вариантов (ниши — 2 колонки) */
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.option-btn {
+  min-height: 56px;
+  padding: 12px 14px;
+  background: var(--tg-theme-secondary-bg-color);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tg-theme-text-color);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 180ms ease, background 180ms ease, transform 120ms ease;
+  line-height: 1.3;
+}
+
+.option-btn:active {
+  transform: scale(0.96);
+  border-color: var(--accent);
+}
+
+.option-btn.selected {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--tg-theme-secondary-bg-color));
+}
+
+/* Список вариантов (ситуация — 1 колонка) */
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 14px 14px;
+  background: var(--tg-theme-secondary-bg-color);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease, transform 120ms ease;
+  text-align: left;
+  width: 100%;
+}
+
+.option-item:active {
+  transform: scale(0.98);
+  border-color: var(--accent);
+}
+
+.option-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.option-text {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tg-theme-text-color);
+  line-height: 1.35;
+}
+
+.option-arrow {
+  flex-shrink: 0;
+  color: var(--tg-theme-hint-color);
+}
+
+/* ============================================
+   Форма контактов
+   ============================================ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tg-theme-hint-color);
+}
+
+.required {
+  color: var(--accent);
+}
+
+.form-input {
+  height: 50px;
+  padding: 0 14px;
+  background: var(--tg-theme-secondary-bg-color);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  color: var(--tg-theme-text-color);
+  outline: none;
+  width: 100%;
+  transition: border-color 200ms ease;
+  caret-color: var(--accent);
+}
+
+.form-input::placeholder {
+  color: var(--tg-theme-hint-color);
+  opacity: 0.7;
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+}
+
+.form-input.error {
+  border-color: #e53935;
+}
+
+.form-error {
+  font-size: 12px;
+  color: #e53935;
+  min-height: 16px;
+}
+
+/* ============================================
+   Кнопки
+   ============================================ */
+
+.screen-footer {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 50px;
+  padding: 0 20px;
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--transition), transform 120ms ease, opacity 200ms ease;
+}
+
+.btn-primary:active {
+  background: var(--accent-dark);
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 50px;
+  padding: 0 20px;
+  background: var(--tg-theme-secondary-bg-color);
+  color: var(--tg-theme-text-color);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 200ms ease, transform 120ms ease;
+}
+
+.btn-secondary:active {
+  opacity: 0.7;
+  transform: scale(0.98);
+}
+
+.footer-note {
+  font-size: 11px;
+  color: var(--tg-theme-hint-color);
+  text-align: center;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+/* ============================================
+   Спиннер загрузки
+   ============================================ */
+
+.spinner {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ============================================
+   Экран успеха
+   ============================================ */
+
+.success-inner {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+  padding: 32px 24px env(safe-area-inset-bottom, 32px);
+}
+
+.success-icon {
+  font-size: 64px;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.success-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--tg-theme-text-color);
+  margin-bottom: 12px;
+}
+
+.success-text {
+  font-size: 15px;
+  color: var(--tg-theme-hint-color);
+  line-height: 1.55;
+  max-width: 300px;
+  margin-bottom: 32px;
+}
+
+.success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 360px;
+}
